@@ -35,6 +35,16 @@ services:
     - REDIS_PASSWORD=123_openHAB
     restart: always
 
+  google-assistant:
+    image: jasonxh/openhab-google-assistant:latest
+    command: [ "--oh-host", "${DOMAIN_NAME}" ]
+    restart: always
+    labels:
+    - "traefik.enable=true"
+    - "traefik.frontend.rule=PathPrefixStrip:/google-assistant"
+    - "traefik.port=3000"
+    - "traefik.protocol=http"
+
   traefik:
     image: traefik:1.7
     ports:
