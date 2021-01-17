@@ -2,12 +2,12 @@ version: '3'
 
 services:
   app:
-    image: openhab/openhabcloud-app:latest
+    image: jasonxh/openhabcloud-app:latest
     build:
       context: ../..
       # Uncomment to customize timezone
-      #args:
-      #  TZ: America/Los_Angeles
+      args:
+        TZ: America/Los_Angeles
     volumes:
     - ./config.json.template:/opt/openhabcloud/config.json.template
     depends_on:
@@ -24,7 +24,7 @@ services:
     - "traefik.protocol=http"
 
   mongodb:
-    image: mongo:4
+    image: mongo:4.2
     volumes:
     - mongo-data:/data/db
     restart: always
