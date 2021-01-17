@@ -57,6 +57,7 @@ services:
     - traefik-data:/data
     command:
     - "--acme.email=${EMAIL}"
+    restart: always
 
 volumes:
   mongo-data:
